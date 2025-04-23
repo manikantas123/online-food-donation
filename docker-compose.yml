@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  backend:
+    image: manikanta455/oneline-backend  # Use the Docker Hub image
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    volumes:
+      - ./backend/donations.json:/app/donations.json  # Mount donations.json to persist data
+    deploy:
+      replicas: 1
+
+  frontend:
+    image: manikanta455/oneline-frontend  # Use the Docker Hub image
+    ports:
+      - "80:80"
+    networks:
+      - app-network
+    deploy:
+      replicas: 1
+    depends_on:
+      - backend
+
+networks:
+  app-network:
+    driver: overlay
+
+

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Food Donation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+    }
+
+    header {
+      background-color: #d32f2f;
+      color: white;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background-color: #ffecb3;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .hero h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #555;
+    }
+
+    .hero button {
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+
+    h3 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    button[type="submit"] {
+      background-color: #00c853;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #00b248;
+    }
+
+    .success {
+      text-align: center;
+      margin-top: 20px;
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Online Food Donation</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Donate</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2>Donate Food, Spread Smiles</h2>
+    <p>Help us fight hunger by donating your surplus food to those in need.</p>
+    <button onclick="document.getElementById('donationForm').scrollIntoView({behavior: 'smooth'})">Donate Now</button>
+  </div>
+
+  <div class="container">
+    <h3>Donation Form</h3>
+    <form id="donationForm">
+      <input name="fullName" placeholder="Full Name" required />
+      <input name="email" type="email" placeholder="Email Address" required />
+      <input name="foodType" placeholder="Food Type (e.g., Veg, Non-Veg)" required />
+      <input name="quantity" type="number" placeholder="Quantity (in servings)" required />
+      <textarea name="address" placeholder="Pickup Address" required></textarea>
+      <button type="submit">Submit Donation</button>
+    </form>
+    <p id="successMsg" class="success" style="display: none;">Thank you for your donation! We'll contact you soon.</p>
+  </div>
+
+  <script>
+    document.getElementById('donationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = {
+        fullName: this.fullName.value,
+        email: this.email.value,
+        foodType: this.foodType.value,
+        quantity: this.quantity.value,
+        address: this.address.value
+      };
+
+      try {
+        const res = await fetch('http://localhost:5000/api/donate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(formData)
+        });
+
+        if (res.ok) {
+          document.getElementById('successMsg').style.display = 'block';
+          this.reset();
+        } else {
+          alert('Error submitting donation.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Server error. Please try again later.');
+      }
+    });
+  </script>
+</body>
+</html>
