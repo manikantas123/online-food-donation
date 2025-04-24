@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        FRONTEND_IMAGE = 'yourdockerhubusername/food-frontend:latest'
-        BACKEND_IMAGE = 'yourdockerhubusername/food-backend:latest'
+        FRONTEND_IMAGE = 'manikantas123/food-frontend:latest'
+        BACKEND_IMAGE = 'manikantas123/food-backend:latest'
     }
 
     stages {
@@ -16,10 +16,10 @@ pipeline {
         stage('Build & Push Docker Images') {
             steps {
                 bat '''
-                docker build -t $FRONTEND_IMAGE ./frontend
-                docker build -t $BACKEND_IMAGE ./backend
-                docker push $FRONTEND_IMAGE
-                docker push $BACKEND_IMAGE
+                docker build -t %FRONTEND_IMAGE% ./frontend
+                docker build -t %BACKEND_IMAGE% ./backend
+                docker push %FRONTEND_IMAGE%
+                docker push %BACKEND_IMAGE%
                 '''
             }
         }
