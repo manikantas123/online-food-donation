@@ -1,10 +1,11 @@
 pipeline {
     agent any
 
-    environment {
-        FRONTEND_IMAGE = 'manikantas123/food-frontend:latest'
-        BACKEND_IMAGE = 'manikantas123/food-backend:latest'
-    }
+environment {
+    FRONTEND_IMAGE = 'manikanta455/food-frontend:latest'
+    BACKEND_IMAGE = 'manikanta455/food-backend:latest'
+}
+
 
     stages {
         stage('Clone Repository') {
