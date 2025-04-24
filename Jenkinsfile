@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build & Push Docker Images') {
             steps {
-                sh '''
+                bat '''
                 docker build -t $FRONTEND_IMAGE ./frontend
                 docker build -t $BACKEND_IMAGE ./backend
                 docker push $FRONTEND_IMAGE
@@ -26,7 +26,7 @@ pipeline {
 
         stage('Deploy to Swarm') {
             steps {
-                sh 'docker stack deploy -c docker-compose.yml mystack'
+                bat 'docker stack deploy -c docker-compose.yml mystack'
             }
         }
     }
