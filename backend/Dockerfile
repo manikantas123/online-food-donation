@@ -1,16 +1,20 @@
-# Base image
+# Use official Node.js image
 FROM node:18
 
-# Create app directory
+# Set working directory
 WORKDIR /app
 
-# Install dependencies
+# Copy package.json and package-lock.json (if present)
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy app source code
+# Copy the rest of the application code
 COPY . .
 
-# Expose port and start the server
+# Expose the backend port (5000 in your case)
 EXPOSE 5000
+
+# Start the backend server
 CMD ["node", "server.js"]

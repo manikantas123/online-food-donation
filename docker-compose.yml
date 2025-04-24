@@ -1,30 +1,26 @@
-version: '3.8'
 
 services:
   backend:
-    image: manikanta455/oneline-backend  # Use the Docker Hub image
+    build:
+      context: ./backend  # Adjust the path to your backend folder
+    image: manikanta455/food-backend:latest
     ports:
       - "5000:5000"
-    networks:
-      - app-network
     volumes:
-      - ./backend/donations.json:/app/donations.json  # Mount donations.json to persist data
-    deploy:
-      replicas: 1
-
-  frontend:
-    image: manikanta455/oneline-frontend  # Use the Docker Hub image
-    ports:
-      - "80:80"
+      - ./backend/donations.json:/app/donations.json  # Mount donations.json file
     networks:
-      - app-network
-    deploy:
-      replicas: 1
-    depends_on:
-      - backend
+      - food-network
+  frontend:
+    build:
+      context: ./frontend  # Adjust the path to your frontend folder
+    image: manikanta455/food-frontend:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - food-network
 
 networks:
-  app-network:
+  food-network:
     driver: overlay
-
+    attachable: true
 

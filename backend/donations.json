@@ -1,65 +1,37 @@
 [
   {
-    "id": 1745256485913,
-    "fullName": "John Doe",
-    "email": "johndoe@example.com",
+    "name": "Mani",
+    "email": "john@example.com",
     "foodType": "Veg",
-    "quantity": 10,
-    "address": "1234 Elm St",
-    "time": "2025-04-21T17:28:05.913Z"
+    "quantity": 15,
+    "address": "123 Street, City"
   },
   {
-    "id": 1745256525185,
-    "fullName": "lalith",
-    "email": "johndoe@example.com",
+    "name": "Manikk",
+    "email": "john@example.com",
     "foodType": "Veg",
-    "quantity": 10,
-    "address": "1234 Elm St",
-    "time": "2025-04-21T17:28:45.185Z"
+    "quantity": 15,
+    "address": "123 Street, City"
   },
   {
-    "id": 1745328772541,
-    "fullName": "Mummidi Manikanta",
+    "name": "subbu",
+    "email": "manikantamummidi5@gmail.com",
+    "foodType": "Veg",
+    "quantity": "1",
+    "address": "hostel"
+  },
+  {
+    "name": "Mani",
+    "email": "manikantamummidi5@gmail.com",
+    "foodType": "Veg",
+    "quantity": "1",
+    "address": "hostel"
+  },
+  {
+    "name": "Mummidi Manikanta",
     "email": "manikantamummidi5@gmail.com",
     "foodType": "veg",
     "quantity": "1",
-    "address": "hostel",
-    "time": "2025-04-22T13:32:52.541Z"
-  },
-  {
-    "id": 1745329034678,
-    "fullName": "suvidraju",
-    "email": "manikantamummidi5@gmail.com",
-    "foodType": "veg",
-    "quantity": "1",
-    "address": "india",
-    "time": "2025-04-22T13:37:14.678Z"
-  },
-  {
-    "id": 1745329235954,
-    "fullName": "Kanchana",
-    "email": "manikantamummidi5@gmail.com",
-    "foodType": "veg",
-    "quantity": "1",
-    "address": "Rajahmundry",
-    "time": "2025-04-22T13:40:35.954Z"
-  },
-  {
-    "id": 1745394567897,
-    "fullName": "Mummidi Manikanta",
-    "email": "manikantamummidi5@gmail.com",
-    "foodType": "veg",
-    "quantity": "1",
-    "address": "india",
-    "time": "2025-04-23T07:49:27.897Z"
-  },
-  {
-    "id": 1745394784351,
-    "fullName": "Mummid",
-    "email": "manikantamummidi5@gmail.com",
-    "foodType": "veg",
-    "quantity": "1",
-    "address": "india",
-    "time": "2025-04-23T07:53:04.351Z"
+    "address": "bh4"
   }
 ]
