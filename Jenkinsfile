@@ -13,20 +13,25 @@ pipeline {
             }
         }
 
-    stage('Build & Push Docker Images') {
-    steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-            bat '''
-            echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
-            docker build -t %FRONTEND_IMAGE% ./frontend
-            docker build -t %BACKEND_IMAGE% ./backend
-            docker push %FRONTEND_IMAGE%
-            docker push %BACKEND_IMAGE%
-            '''
+        stage('Build & Push Docker Images') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'ebfa5a25-cc4e-4466-91db-cec40f35d3a2',
+                        usernameVariable: 'DOCKER_USER',
+                        passwordVariable: 'DOCKER_PASS'
+                    )
+                ]) {
+                    bat '''
+                    echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                    docker build -t %FRONTEND_IMAGE% ./frontend
+                    docker build -t %BACKEND_IMAGE% ./backend
+                    docker push %FRONTEND_IMAGE%
+                    docker push %BACKEND_IMAGE%
+                    '''
+                }
+            }
         }
-    }
-}
-
 
         stage('Deploy to Swarm') {
             steps {
